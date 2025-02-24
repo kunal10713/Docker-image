@@ -13,15 +13,17 @@ pipeline {
         stage('Setup') {
             steps {
                 sh "python3 -m venv venv"
-                sh "source venv/bin/activate && pip3 install --upgrade pip"
-                sh "source venv/bin/activate && pip3 install -r requirements.txt"
+                sh "venv/bin/pip install --upgrade pip"
+                sh "venv/bin/pip install -r requirements.txt"
             }
         }
+
         stage('Test') {
             steps {
-                sh "source venv/bin/activate && pytest || true"
+                sh "venv/bin/pytest || true"
             }
         }
+
 
         stage('Login to docker hub') {
             steps {
