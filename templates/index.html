@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to right, #ff9a9e, #fad0c4);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        width: 400px;
+        text-align: center;
+      }
+      h1 {
+        color: #333;
+        font-weight: 600;
+      }
+      form {
+        margin-bottom: 20px;
+      }
+      input[type="text"] {
+        padding: 12px;
+        width: 80%;
+        border: none;
+        border-radius: 6px;
+        outline: none;
+        font-size: 16px;
+      }
+      input[type="submit"] {
+        background: #ff4b5c;
+        color: white;
+        padding: 12px 18px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+      }
+      input[type="submit"]:hover {
+        background: #e43f51;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        background: #fff3f3;
+        margin: 8px 0;
+        padding: 12px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .delete-btn {
+        background: #ff4b5c;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+      .delete-btn:hover {
+        background: #e43f51;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Todo App</h1>
+      <form method="post">
+        <input type="text" name="task_content" placeholder="Enter a new task" required />
+        <input type="submit" name="add_task" value="Add Task" />
+      </form>
+      <h2>Tasks</h2>
+      <ul>
+        {% for id, task in tasks.items() %}
+        <li>
+          <span>{{ task }}</span>
+          <form method="post" style="display: inline">
+            <input type="hidden" name="task_id_to_delete" value="{{ id }}" />
+            <button type="submit" name="delete_task" class="delete-btn">Delete</button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
